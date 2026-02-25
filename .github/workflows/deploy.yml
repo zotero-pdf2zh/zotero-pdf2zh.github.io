@@ -27,15 +27,7 @@ jobs:
       - name: Install pnpm
         run: npm install -g pnpm
 
-      # 创建临时目录用于源码
-      - name: Copy source to temp directory
-        run: |
-          mkdir -p /tmp/docs-source
-          cp -r docs /tmp/docs-source/
-          cp package*.json /tmp/docs-source/ 2>/dev/null || true
-
       - name: Build docs
-        working-directory: /tmp/docs-source
         run: |
           pnpm install
           pnpm docs:build
@@ -51,7 +43,7 @@ jobs:
         run: |
           cd main-branch
           find . -maxdepth 1 ! -name '.git' ! -name '.nojekyll' ! -name '.' -exec rm -rf {} +
-          cp -r /tmp/docs-source/.vitepress/dist/* .
+          cp -r ${{ github.workspace }}/.vitepress/dist/* .
           touch .nojekyll
 
       - name: Commit and push to main
@@ -60,5 +52,5 @@ jobs:
           git config user.email "github-actions[bot]@users.noreply.github.com"
           git config user.name "github-actions[bot]"
           git add .
-          git diff --staged --quiet || git commit -m "Deploy from source @ $(date +'%Y-%m-%d %H:%M:%S')"
+          git diff --staged --quiet || git commit -m "Deploy from source @ ${{ github.sha }}"
           git push origin main
