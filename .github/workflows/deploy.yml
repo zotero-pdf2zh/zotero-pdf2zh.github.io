@@ -1,0 +1,64 @@
+name: Build and Deploy Docs
+
+on:
+  push:
+    branches:
+      - source
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout source branch
+        uses: actions/checkout@v4
+        with:
+          ref: source
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Install pnpm
+        run: npm install -g pnpm
+
+      # 创建临时目录用于源码
+      - name: Copy source to temp directory
+        run: |
+          mkdir -p /tmp/docs-source
+          cp -r docs /tmp/docs-source/
+          cp package*.json /tmp/docs-source/ 2>/dev/null || true
+
+      - name: Build docs
+        working-directory: /tmp/docs-source
+        run: |
+          pnpm install
+          pnpm docs:build
+
+      # 切换到 main 分支并部署
+      - name: Deploy to main branch
+        uses: actions/checkout@v4
+        with:
+          ref: main
+          path: main-branch
+
+      - name: Copy built files to main branch
+        run: |
+          cd main-branch
+          find . -maxdepth 1 ! -name '.git' ! -name '.nojekyll' ! -name '.' -exec rm -rf {} +
+          cp -r /tmp/docs-source/.vitepress/dist/* .
+          touch .nojekyll
+
+      - name: Commit and push to main
+        run: |
+          cd main-branch
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git config user.name "github-actions[bot]"
+          git add .
+          git diff --staged --quiet || git commit -m "Deploy from source @ $(date +'%Y-%m-%d %H:%M:%S')"
+          git push origin main
