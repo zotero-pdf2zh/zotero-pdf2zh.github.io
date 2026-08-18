@@ -21,11 +21,12 @@ SPONSORS = [
     ("awwaawwa", "GitHub x8", "https://github.com/awwaawwa"),
     ("htyxyt", "GitHub", "https://github.com/htyxyt"),
     ("jiajia", "Bilibili", "https://space.bilibili.com/347580558"),
+     ("南方嘉木", "GitHub", "https://github.com/Gavin-Meskin-Chen"),
     # --- 赞助者 ---
     "bibiu77",
     "*琰",
     "*冬萍",
-    ("阿赟", "x3"),  # 带备注
+    ("阿赟", "x4"),  # 带备注
     "*声",
     "h*u",
     ("爱发电用户", "96598"),
@@ -59,7 +60,10 @@ SPONSORS = [
     "*萌",
     "*川",
     "*博",
-    "Sine璇"
+    "Sine璇",
+    "🐑H-Yang"
+    "独角兽先生",
+    "*洋",
 ]
 
 # ================= 核心逻辑 =================
