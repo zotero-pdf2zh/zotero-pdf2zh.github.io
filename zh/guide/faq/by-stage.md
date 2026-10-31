@@ -55,7 +55,7 @@
 **正在做什么**：在 Zotero 中安装 xpi 插件
 
 **步骤**：
-1. 下载最新插件：[v4.1.1](https://github.com/guaguastandup/zotero-pdf2zh/releases/latest/download/zotero-pdf-2-zh.xpi)
+1. 下载最新插件：[最新版本](https://github.com/guaguastandup/zotero-pdf2zh/releases/latest/download/zotero-pdf-2-zh.xpi)
 2. 打开 Zotero 「工具 → 插件」
 3. 将 xpi 文件拖入插件窗口
 4. 重启 Zotero
@@ -155,7 +155,7 @@ python server.py
 
 - 阅读 [有效提问指南](./asking-questions.md)
 - 在 [GitHub Issues](https://github.com/guaguastandup/zotero-pdf2zh/issues) 提问
-- 加入 QQ 群：5群 1064435415（入群答案：github）
+- 加入 QQ 群：5群 1064435415（入群口令请到 GitHub / Gitee 仓库主页查看）
 
 ---
 
@@ -193,5 +193,5 @@ python server.py
 ## 获取帮助
 
 - 💬 [GitHub Issues](https://github.com/guaguastandup/zotero-pdf2zh/issues)
-- 👥 QQ 群：5群 1064435415（入群答案：github）
+- 👥 QQ 群：5群 1064435415（入群口令请到 GitHub / Gitee 仓库主页查看）
 - 📋 [问题索引](./index.md) - 按类型查找问题
