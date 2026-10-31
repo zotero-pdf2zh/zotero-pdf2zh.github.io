@@ -1,0 +1,1 @@
+var e=`/chii.jpg`;export{e as t};
